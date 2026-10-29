@@ -32,9 +32,7 @@
       color: var(--text);
     }
 
-    body {
-      padding: 24px;
-    }
+    body { padding: 24px; }
 
     .phone {
       position: relative;
@@ -350,10 +348,6 @@
       box-shadow: 0 16px 18px rgba(37,99,235,0.24);
     }
 
-    .hidden {
-      display: none !important;
-    }
-
     .emulator-screen {
       flex: 1;
       display: flex;
@@ -373,12 +367,13 @@
       color: #303845;
     }
 
-    .emulator-app {
+    .simulated-app {
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 18px 14px 18px;
+      padding: 16px;
       gap: 14px;
+      overflow: auto;
     }
 
     .app-card {
@@ -464,6 +459,186 @@
     .stat span {
       font-size: 11px;
       color: #58657d;
+    }
+
+    .browser-shell,
+    .calc-shell,
+    .notes-shell,
+    .chat-shell {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 18px rgba(15,23,42,0.08);
+      overflow: hidden;
+      border: 1px solid rgba(17,24,39,0.06);
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+    }
+
+    .browser-header,
+    .calc-header,
+    .notes-header,
+    .chat-header {
+      background: #f4f6fb;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      color: #1f2c3a;
+    }
+
+    .browser-viewport {
+      flex: 1;
+      background: linear-gradient(180deg, #eaf1ff 0%, #f8f8f8 100%);
+      position: relative;
+      min-height: 320px;
+    }
+
+    .browser-viewport iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: white;
+    }
+
+    .calc-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      background: #f7f9fc;
+      min-height: 330px;
+    }
+
+    .calc-screen {
+      min-height: 72px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid rgba(15,23,42,0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 12px 14px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #192534;
+      word-break: break-all;
+      overflow: hidden;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .calc-grid button {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 0;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #e7ecf5;
+      color: #1f2937;
+    }
+
+    .calc-grid .op {
+      background: #dfe9ff;
+      color: #1d4ed8;
+    }
+
+    .calc-grid .eq {
+      background: #2563eb;
+      color: white;
+    }
+
+    .notes-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 330px;
+      background: linear-gradient(180deg, #fffefb 0%, #f5f7ff 100%);
+    }
+
+    .notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .note-item {
+      background: #fff;
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .note-item strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #0f172a;
+    }
+
+    .chat-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      min-height: 330px;
+      background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+    }
+
+    .chat-bubble {
+      max-width: 75%;
+      padding: 10px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .chat-bubble.incoming {
+      background: #fff;
+      border: 1px solid rgba(15,23,42,0.06);
+      color: #1f2937;
+      align-self: flex-start;
+    }
+
+    .chat-bubble.outgoing {
+      background: #2563eb;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .chat-input {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 12px;
+      background: white;
+      padding: 10px 12px;
+      outline: none;
+      font: inherit;
+    }
+
+    .chat-input button {
+      border: 0;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     @media (max-width: 480px) {
@@ -585,32 +760,7 @@
           <span id="emulator-time">9:41</span>
         </div>
 
-        <div class="emulator-app">
-          <div class="app-card">
-            <div class="app-icon-large" id="app-icon-large">D</div>
-            <h3 id="app-name">Demo App</h3>
-            <p id="app-description">Running inside the browser-based Android emulator.</p>
-            <div class="fake-actions">
-              <button class="action-primary" type="button">Open</button>
-              <button class="action-secondary" type="button">Install</button>
-            </div>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>12.4</strong>
-              <span>FPS</span>
-            </div>
-            <div class="stat">
-              <strong>96%</strong>
-              <span>CPU</span>
-            </div>
-            <div class="stat">
-              <strong>3.2GB</strong>
-              <span>RAM</span>
-            </div>
-          </div>
-        </div>
+        <div class="simulated-app" id="simulated-app"></div>
       </div>
     </div>
   </div>
@@ -627,9 +777,7 @@
     const runApkButton = document.getElementById('run-apk');
     const apkWindow = document.getElementById('apk-window');
     const emulatorWindow = document.getElementById('emulator-window');
-    const appNameLabel = document.getElementById('app-name');
-    const appIconLarge = document.getElementById('app-icon-large');
-    const appDescription = document.getElementById('app-description');
+    const simulatedApp = document.getElementById('simulated-app');
     const emulatorTitle = document.getElementById('emulator-title');
 
     function updateClock() {
@@ -658,8 +806,14 @@
       btn.addEventListener('click', () => {
         const target = btn.getAttribute('data-target');
         if (target === 'apk-window') showWindow('apk-window');
-        if (target === 'browser-window') showWindow('apk-window');
-        if (target === 'chat-window') showWindow('apk-window');
+        if (target === 'browser-window') {
+          showWindow('emulator-window');
+          loadApp('browser');
+        }
+        if (target === 'chat-window') {
+          showWindow('emulator-window');
+          loadApp('chat');
+        }
       });
     });
 
@@ -667,35 +821,188 @@
       button.addEventListener('click', () => showWindow('apk-window'));
     });
 
+    function cleanName(fileName) {
+      return (fileName || 'Demo App')
+        .replace(/\.apk$/i, '')
+        .replace(/[-_]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function detectAppType(fileName, fallbackName = '') {
+      const haystack = `${fileName} ${fallbackName}`.toLowerCase();
+      if (/(calc|calculator|math|finance)/.test(haystack)) return 'calculator';
+      if (/(note|memo|todo|tasks|keep)/.test(haystack)) return 'notes';
+      if (/(browser|web|google|search|chrome)/.test(haystack)) return 'browser';
+      if (/(chat|messenger|sms|message)/.test(haystack)) return 'chat';
+      return 'demo';
+    }
+
+    function renderCalculator() {
+      const ui = `
+        <div class="calc-shell">
+          <div class="calc-header"><span>Calculator</span><span>⌂</span></div>
+          <div class="calc-body">
+            <div class="calc-screen" id="calc-output">0</div>
+            <div class="calc-grid">
+              <button type="button">C</button>
+              <button type="button">⌫</button>
+              <button type="button" class="op">÷</button>
+              <button type="button" class="op">×</button>
+              <button type="button">7</button>
+              <button type="button">8</button>
+              <button type="button">9</button>
+              <button type="button" class="op">−</button>
+              <button type="button">4</button>
+              <button type="button">5</button>
+              <button type="button">6</button>
+              <button type="button" class="op">+</button>
+              <button type="button">1</button>
+              <button type="button">2</button>
+              <button type="button">3</button>
+              <button type="button" class="eq" rowspan="2">=</button>
+              <button type="button" style="grid-column: span 2;">0</button>
+              <button type="button">.</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      simulatedApp.innerHTML = ui;
+      const calcOutput = document.getElementById('calc-output');
+      let expression = '0';
+
+      document.querySelectorAll('.calc-grid button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const value = btn.textContent.trim();
+
+          if (value === 'C') {
+            expression = '0';
+          } else if (value === '⌫') {
+            expression = expression.length > 1 ? expression.slice(0, -1) : '0';
+          } else if (value === '=') {
+            try {
+              const computed = Function(`"use strict"; return (${expression.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-')})`)();
+              expression = Number.isFinite(computed) ? String(computed) : 'Error';
+            } catch {
+              expression = 'Error';
+            }
+          } else if (['+', '-', '×', '÷'].includes(value)) {
+            const last = expression.slice(-1);
+            if (['+', '-', '×', '÷'].includes(last)) expression = expression.slice(0, -1) + value;
+            else expression = expression === '0' ? value : expression + value;
+          } else if (value === '.') {
+            const parts = expression.split(/[+\-×÷]/);
+            const last = parts[parts.length - 1];
+            if (!last.includes('.')) expression = expression === '0' ? '0.' : expression + '.';
+          } else {
+            expression = expression === '0' ? value : expression + value;
+          }
+
+          calcOutput.textContent = expression;
+        });
+      });
+    }
+
+    function renderNotes() {
+      simulatedApp.innerHTML = `
+        <div class="notes-shell">
+          <div class="notes-header"><span>Notes</span><span>✎</span></div>
+          <div class="notes-body">
+            <div class="notes-list">
+              <div class="note-item"><strong>Ideas</strong>Try to add built-in APK emulation to the phone shell.</div>
+              <div class="note-item"><strong>Checklist</strong>Upload APK, detect app type, launch real app mock window.</div>
+              <div class="note-item"><strong>Launch</strong>Boot simulation is now active inside beta-index.html.</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBrowser() {
+      simulatedApp.innerHTML = `
+        <div class="browser-shell">
+          <div class="browser-header"><span>Browser</span><span>🔒</span></div>
+          <div class="browser-viewport">
+            <iframe title="emulated web browser" src="https://example.com"></iframe>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderChat() {
+      simulatedApp.innerHTML = `
+        <div class="chat-shell">
+          <div class="chat-header"><span>Messages</span><span>•</span></div>
+          <div class="chat-body">
+            <div class="chat-bubble incoming">Hey! Your APK just booted in the emulator.</div>
+            <div class="chat-bubble outgoing">Nice! The app is launching correctly.</div>
+            <div class="chat-bubble incoming">This is running inside the same beta-index.html page.</div>
+            <div class="chat-input">
+              <input type="text" value="Hello" aria-label="chat input" />
+              <button type="button">Send</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDemoApp(title, iconLetter) {
+      simulatedApp.innerHTML = `
+        <div class="app-card">
+          <div class="app-icon-large" style="background: linear-gradient(135deg, #60a5fa, #2563eb);">${iconLetter}</div>
+          <h3>${title}</h3>
+          <p>Running inside the browser-based Android emulator.</p>
+          <div class="fake-actions">
+            <button class="action-primary" type="button">Open</button>
+            <button class="action-secondary" type="button">Install</button>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>12.4</strong><span>FPS</span></div>
+          <div class="stat"><strong>96%</strong><span>CPU</span></div>
+          <div class="stat"><strong>3.2GB</strong><span>RAM</span></div>
+        </div>
+      `;
+    }
+
+    function loadApp(type = 'demo', titleOverride = '') {
+      const typeKey = type || 'demo';
+      const title = titleOverride || (typeKey === 'browser' ? 'Browser' : typeKey === 'calculator' ? 'Calculator' : typeKey === 'notes' ? 'Notes' : typeKey === 'chat' ? 'Messages' : 'Demo App');
+      const icon = title.charAt(0).toUpperCase() || 'D';
+      emulatorTitle.textContent = title;
+
+      if (typeKey === 'calculator') renderCalculator();
+      else if (typeKey === 'notes') renderNotes();
+      else if (typeKey === 'browser') renderBrowser();
+      else if (typeKey === 'chat') renderChat();
+      else renderDemoApp(title, icon);
+    }
+
     apkFileInput.addEventListener('change', (event) => {
       const [file] = event.target.files || [];
       if (!file) return;
 
       const fileName = file.name || 'custom.apk';
-      const cleanName = fileName.replace(/\.apk$/i, '').replace(/[-_]+/g, ' ').trim();
-      const appName = cleanName || 'Demo App';
+      const clean = cleanName(fileName);
+      const inferredType = detectAppType(fileName, clean);
 
       apkNameLabel.textContent = fileName;
       apkStatus.textContent = 'Ready';
       apkStatus.className = 'pill green';
-      apkArch.textContent = fileName.endsWith('.apk') ? 'APK Package' : 'Android 9';
-      runApkButton.dataset.appName = appName;
-      runApkButton.dataset.fileName = fileName;
+      apkArch.textContent = inferredType.charAt(0).toUpperCase() + inferredType.slice(1);
+      runApkButton.dataset.appType = inferredType;
+      runApkButton.dataset.appName = clean || 'Demo App';
     });
 
     runApkButton.addEventListener('click', () => {
-      const fileName = (runApkButton.dataset.fileName || 'demo.apk');
-      const appName = (runApkButton.dataset.appName || fileName.replace(/\.apk$/i, '').replace(/[-_]+/g, ' ').trim() || 'Demo App');
-
-      const safeName = appName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-      appNameLabel.textContent = safeName;
-      emulatorTitle.textContent = safeName;
-      appIconLarge.textContent = safeName.charAt(0) || 'D';
-      appDescription.textContent = `${safeName} is booting in the Webdroid APK emulator. This demo simulates a clean Android app launch.`;
+      const appType = runApkButton.dataset.appType || detectAppType(apkNameLabel.textContent, '');
+      const appName = runApkButton.dataset.appName || cleanName(apkNameLabel.textContent) || 'Demo App';
 
       apkStatus.textContent = 'Emulating';
       apkStatus.className = 'pill amber';
       showWindow('emulator-window');
+      loadApp(appType, appName);
     });
   </script>
 </body>
